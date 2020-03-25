@@ -7,7 +7,7 @@ __all__ = ["GroveMoistureSensor"]
 
 class GroveMoistureSensor:
     '''
-    Grove Moisture Sensor class\
+    Grove Moisture Sensor class
 
     Args:
         pin(int): number of analog pin/channel the sensor connected.
@@ -31,11 +31,8 @@ Grove = GroveMoistureSensor
 
 
 def main():
-    from grove.helper import SlotHelper
-    sh = SlotHelper(SlotHelper.ADC)
-    pin = sh.argv2pin()
-
-    sensor = GroveMoistureSensor(pin)
+   
+    sensor = GroveMoistureSensor(0)
 
     print('Detecting moisture...')
     while True:
@@ -48,6 +45,31 @@ def main():
             result = 'Wet'
         print('Moisture value: {0}, {1}'.format(m, result))
         time.sleep(1)
+
+
+def moisture():
+   
+    sensor = GroveMoistureSensor(0)
+
+    m = sensor.moisture
+    if 0 <= m and m < 300:
+        result = 'Dry'
+    elif 300 <= m and m < 600:
+        result = 'Moist'
+    else:
+        result = 'Wet'
+    return 'Moisture value: {0}, {1}'.format(m, result)
+    #time.sleep(1)
+
+
+def moisture_v():
+    sensor = GroveMoistureSensor(0)
+
+    m = sensor.moisture
+    result = m
+    return result
+    # time.sleep(1)
+
 
 if __name__ == '__main__':
     main()

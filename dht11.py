@@ -1,8 +1,8 @@
 import time
 import seeed_dht
-def main():
 
-    # for DHT11/DHT22
+
+def dht11():    # for DHT11/DHT22
     sensor = seeed_dht.DHT("11", 12)
     # for DHT10
     # sensor = seeed_dht.DHT("10")
@@ -14,7 +14,24 @@ def main():
         else:
             print('DHT{0}, humidity & temperature: {1}'.format(sensor.dht_type, temp))
         time.sleep(1)
+        
+def getDht():
+    sensor = seeed_dht.DHT("11", 12)
+    humi, temp = sensor.read()
+    result = ''
+    if not humi is None:
+        result = 'DHT{0}, humidity {1:.1f}%, temperature {2:.1f}*'.format(sensor.dht_type, humi, temp)
+    else:
+        result = 'DHT{0}, humidity & temperature: {1}'.format(sensor.dht_type, temp)
+
+    return result
 
 
-if __name__ == '__main__':
-    main()
+def dht_v():
+    sensor = seeed_dht.DHT("11", 12)
+    humi, temp = sensor.read()
+    result = '{0}, {1}'.format(humi, temp)
+
+    return result
+    
+

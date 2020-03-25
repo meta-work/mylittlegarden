@@ -1,12 +1,17 @@
+import RPi.GPIO as GPIO
 import time
-from grove.gpio import GPIO
 
-led = GPIO(12, GPIO.OUT)
-button = GPIO(22, GPIO.IN)
 
-while True:
-    if button.read():
-        led.write(1)
-    else:
-        led.write(0)
-    time.sleep(0.1)
+
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(22,GPIO.OUT)
+
+
+print ('LED on')
+GPIO.output(22,GPIO.HIGH)
+time.sleep(1)
+
+print ('LED off')
+GPIO.output(22,GPIO.LOW)
